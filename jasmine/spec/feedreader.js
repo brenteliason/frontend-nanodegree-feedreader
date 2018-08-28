@@ -32,11 +32,11 @@ $(function() {
          * and that the URL is not empty.
          */
          describe('URLs Defined', function () {
-           for (let i = 0; i < allFeeds.length; i++) {
-             it("URL at index: " + i + " is defined", function () {
+           it("All URLs are defined", function () {
+             for (let i = 0; i < allFeeds.length; i++) {
                expect(allFeeds[i].url).toBeDefined();
-             });
-           }
+             }
+           });
          })
 
         /* TODO: Write a test that loops through each feed
@@ -45,12 +45,12 @@ $(function() {
          */
 
          describe('Names Defined', function () {
-           for (let i = 0; i < allFeeds.length; i++) {
-             it("Name at index: " + i + " is defined and not empty", function () {
-               expect(allFeeds[i].name).toBeDefined();
-               expect(allFeeds[i].name).not.toBe("");
+             it("All names are defined and not empty", function () {
+               for (let i = 0; i < allFeeds.length; i++) {
+                 expect(allFeeds[i].name).toBeDefined();
+                 expect(allFeeds[i].name).not.toBe("");
+               }
              });
-           }
          })
     });
 
