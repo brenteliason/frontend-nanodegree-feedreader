@@ -136,6 +136,7 @@ $(function() {
 
         beforeEach(function (done) {
           loadFeed(0, function () {
+            //origEntries = document.getElementsByClassName('entry-link');
             origFirstEntryText = document.getElementsByClassName('entry-link')[0].textContent;
             //origEntries = document.getElementsByClassName('entry-link');
             loadFeed(1, function () {
