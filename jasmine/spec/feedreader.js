@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+        it('are defined', function() {//makes sure all feeds are defined
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -32,7 +32,7 @@ $(function() {
          * and that the URL is not empty.
          */
          describe('URLs Defined', function () {
-           it("All URLs are defined", function () {
+           it("All URLs are defined", function () {//makes sure all URLs are defined
              for (let i = 0; i < allFeeds.length; i++) {
                expect(allFeeds[i].url).toBeDefined();
              }
@@ -45,7 +45,7 @@ $(function() {
          */
 
          describe('Names Defined', function () {
-             it("All names are defined and not empty", function () {
+             it("All names are defined and not empty", function () {//makes sure all names are defined
                for (let i = 0; i < allFeeds.length; i++) {
                  expect(allFeeds[i].name).toBeDefined();
                  expect(allFeeds[i].name).not.toBe("");
@@ -63,7 +63,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
          describe("The menu ", function () {
-           it("is hidden by default", function () {
+           it("is hidden by default", function () {//makes sure the menu starts out hidden
              let bodyTag = document.getElementsByTagName('body')[0];
              expect(bodyTag.classList.contains("menu-hidden")).toBe(true);
            })
@@ -74,24 +74,13 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         describe("The menu", function () {
-          it("changes visibility when clicked, and again when clicked again", function () {
-            //simulate click - menu should be visible
-            //let bodyTag = document.getElementsByTagName('body')[0];
-            //console.log("Body tag equals: " + bodyTag);
-            //bodyTag.click();
+          it("changes visibility when clicked, and again when clicked again", function () {//makes sure the menu becomes visible on click
             let menu = document.querySelector('.menu-icon-link')
-            menu.click();
-            //console.log("Simulated one mouseclick")
+            menu.click();//simulates one mouse click
             let bodyTag = document.getElementsByTagName('body')[0];
-            //let bodyTag = document.getElementsByTagName('body')[0];
-            //console.log("Body class list equals: " + bodyTag.classList);
             expect(bodyTag.classList.contains("menu-hidden")).toBe(false);
 
-            //simulate another click - menu should be hidden again
-            menu.click();
-            //console.log("Simulated another mouseclick");
-            //bodyTag = document.getElementsByTagName('body')[0];
-            //console.log("Body class list equals: " + bodyTag.classList);
+            menu.click();//simulates another mouse click
             expect(bodyTag.classList.contains("menu-hidden")).toBe(true);
           })
         })
@@ -112,9 +101,8 @@ $(function() {
             });
         });
 
-         it("Entry added to feed container", function (done) {
+         it("Entry added to feed container", function (done) {//makes sure feed was loaded by checking feed container that starts out empty
            let firstEntry = document.getElementsByClassName('entry-link')[0];
-           //console.log("Inside it statement, firstEntry is: " + firstEntry.textContent);
            expect(firstEntry.textContent).not.toBe(undefined);
            done();
          })
@@ -123,22 +111,15 @@ $(function() {
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe("New Feed Selection", function () {
 
-
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
          let origFirstEntryText, newEntries;
-         /*loadFeed(0, function(done) {
-          origEntries = document.getElementsByClassName('entry-link');
-          //origFirstEntryText = new String(document.getElementsByClassName('entry-link')[0].textContent);
-        });*/
 
         beforeEach(function (done) {
           loadFeed(0, function () {
-            //origEntries = document.getElementsByClassName('entry-link');
             origFirstEntryText = document.getElementsByClassName('entry-link')[0].textContent;
-            //origEntries = document.getElementsByClassName('entry-link');
             loadFeed(1, function () {
               newEntries = document.getElementsByClassName('entry-link');
               done();
@@ -146,59 +127,11 @@ $(function() {
           })
         });
 
-        it('LoadFeed function changes content', function () {
-          //let origFirstEntryText = new String(document.getElementsByClassName('entry-link')[0].textContent);
-          //console.log("Supposed constant is: " + origFirstEntryText);
-          /*loadFeed(0, function() {
-            console.log("Calling loadFeed at index 0 inside it block");
-            //origFirstEntryText = new String(document.getElementsByClassName('entry-link')[0].textContent);
-            console.log("Supposed constant is: " + origFirstEntryText);
-            //origEntries = document.getElementsByClassName('entry-link');
-            //origFirstEntryText = origEntries[0].textContent;
-            //console.log("\t" + origEntries[0].textContent);
-            //done();
-          })
-          loadFeed(1, function() {
-            console.log("Calling loadFeed at index 1 inside it block");
-            //newEntries = document.getElementsByClassName('entry-link');
-            //console.log("\tOld Entries text content " + origEntries[0].textContent);
-            console.log("\tNew Entries text content " + newEntries[0].textContent);
-            console.log("\tSupposed constant is: " + origFirstEntryText);
-            //done();
-            //expect(origFirstEntryText).not.toBe(newEntries[0].textContent);
-            //done();
-          })*/
-          console.log("After both loadfeeds, the original text is: " + origFirstEntryText);
-          console.log("\tAnd the new text is: " + newEntries[0].textContent);
+        it('LoadFeed function changes content', function () {//makes sure the feed has changed after calling loadFeed function
+          //console.log("After both loadfeeds, the original text is: " + origFirstEntryText);
+          //console.log("\tAnd the new text is: " + newEntries[0].textContent);
           expect(origFirstEntryText).not.toBe(newEntries[0].textContent);
-            //done();
         })
     });
 
-
-         /*let origEntries = document.getElementsByClassName('entry-link');
-
-         beforeEach(function(done) {
-           origEntries = document.getElementsByClassName('entry-link');
-           loadFeed(1, function () {
-             done();
-           });
-         });
-
-         it("Load feed functions properly", function () {
-           let newEntries = document.getElementsByClassName('entry-link');
-
-         // Does one exist?
-         expect(newEntries).not.toBe(undefined);
-
-         // and must match the appropriate title
-         expect( articleTitle.text() ).toEqual( allFeeds[ feedIndex ].name );
-
-         // TODO: >>>>>> but it must not be identical to the first feed <<<<<<<<
-         expect( articleTitle.text() ).not.toEqual( allFeeds[ originalFeedIndex ].name );
-
-         // must stop async
-         done();
-       })*/
-    //});
 }());//END OF ALL TESTING

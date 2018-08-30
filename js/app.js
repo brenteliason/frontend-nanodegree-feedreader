@@ -41,7 +41,7 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
-   //console.log("loadFeed called");
+   //console.log("loadFeed called");//used for tracking calls to this functions
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 
